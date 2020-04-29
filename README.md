@@ -1,5 +1,6 @@
 # Biblioteca Musical Nodejs/Express
 
+![Image description](m.jpeg)
 
 Lee datos de un archivo txt, para luego guardarlos en
 Mongodb.
