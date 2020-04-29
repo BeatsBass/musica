@@ -1,0 +1,40 @@
+html
+  head
+  meta(charset='utf-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+
+  link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', crossorigin='anonymous')
+  body
+    .container
+        .row
+            .col-md-6.offset-md-3.text-center 
+                h1.mt-2.mb-5 Jojhan-Search-Music
+        .row
+            
+                form.col-md-6.form-inline(action="/" method="POST")
+                    .form-group
+                        label.mr-2(for='exampleInputEmail1') Buscar Titulo/Artista
+                        input.form-control(type='text', aria-describedby='emailHelp',name='nombre', placeholder='Buscar')
+
+                    button.btn.btn-primary.ml-2(type='submit') Buscar
+                form.col-md-6.form-inline(action="/year" method="POST")
+                    .form-group
+                        label(for='exampleInputEmail1') Buscar Año
+                        input.form-control.ml-2(type='text', aria-describedby='emailHelp',name='nombre', placeholder='Buscar')
+
+                    button.btn.btn-primary.ml-2(type='submit') Buscar Año
+    .container
+        .row  
+            .col-md-6.offset-md-3.text-center 
+                h1.mb-5 #{se}
+        .row                
+                each people in peoples
+                    .card.col-lg-3.col-sm-12(style='width: 18rem;')
+                        .card-body
+                            h5.card-title #{people.artista}
+                            p.card-text #{people.titulo}
+                            p.card-text #{people.album}
+                            -let a = people.anio
+                            - let d = a.search(/[0-9]{4}/)
+                            - let m = a.slice(d,d+4)
+                            p.card-text #{m}
