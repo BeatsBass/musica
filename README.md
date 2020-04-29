@@ -13,3 +13,5 @@ en el archivo txt de prueba. Luego crear un archivo .env
 Por último en consola escribir npm i, y luego npm start.
 
 Y listo ya creaste tu propia Biblioteca Musical.
+
+Live : https://musica8.herokuapp.com
