@@ -69,7 +69,8 @@ const browser = await puppeteer.launch();
     await browser.close();
 
     function busca(e) {
-        const arr = ['Drake','lil wayne','David Guetta'];
+        const arr = ['Drake','lil wayne','David Guetta','Travis Scott','Wiz Khalifa','Maluma', 'Marshmello & Southside', 'John Legend', 'KSHMR & Sak Noel', 'Farruko & Sharo Towers', 'Akon & Wizkid', 'Yandel', 'Kygo', 'Alan Walker & Ruben', 'CNCO & Natti Natasha', 'Kygo & Sasha Sloan', 'Juan Magán & Belinda', 'Mike Perry & Mangoo', 'Alesso', 'Gente de Zona & Becky G.', 'Usher', 'Lil Jon & Ludacris', 'Reik', 'Farruko', 'Camilo & R3HAB', 'Arcángel', 'Sech & Romeo Santos', 'Galantis & Wrabel', 'T-Pain'];
+        
         let s = -1;
         let i = 0;
         while (i < arr.length) {
