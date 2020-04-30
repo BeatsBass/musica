@@ -1,0 +1,94 @@
+const browser = await puppeteer.launch();
+const page = await browser.newPage();
+await page.setRequestInterception(true);
+page.on('request', (req) => {ti
+if(req.resourceType() == 'stylesheet' || req.resourceType() == 'font' || req.resourceType() == 'image'){
+req.abort();
+}
+else {
+req.continue();
+}
+});
+
+await page.setViewport({
+width: 1920,
+height: 1080,
+deviceScaleFactor: 1,
+})
+
+let pp = ['take'];
+let sa = [];
+for (let i in pp){
+const valor = 1;
+await page.goto('https://www29.itopmusic.com');
+let h = await page.evaluate( (valor) =>{ 
+let are = [];
+//let jio= document.querySelectorAll('a.dictLink.featured');
+let jio= document.querySelectorAll('.entry-featured-media a');
+jio.forEach(ele => {
+let objeto = {
+'titulo': ele.getAttribute('title'),
+'link':ele.getAttribute('href')
+};
+are.push(objeto);
+});
+if (jio===null | jio ===undefined){return valor}
+return are
+//return jio.value;
+},valor);
+
+//sa.push(h);
+//im(h);
+let salida = cual(h);
+for (let k in salida){
+console.log(salida[k].link);
+await page.goto(salida[k].link);
+let una = await page.evaluate( ()=>{
+let anio = document.querySelectorAll('.g1-content-narrow.g1-typography-xl.entry-content p')[1];
+if (anio===null | anio === undefined){return 0}
+return anio.innerText;
+});
+let v = una.search(/[0-9]{4}/);
+const anio = una.slice(v,v+4);
+if (anio ==='2020'){
+const p1 = salida[k].search('.com/');
+const p2 = salida[k].search('-itunes');
+let news= 'https://www.musicpremieres.com/';
+news= news+salida[k].slice(p1+5,p2);
+console.log(news);
+}
+}
+}
+//await page.screenshot({path:'h.jpg'});
+await browser.close();
+function busca(e){
+const arr=['lil wayne'];
+let s=-1;
+let i =0;
+while(i<arr.length){
+const reg = new RegExp(arr[i],'i');
+const resu = e.titulo.search(reg);
+// console.log('es',resu,' de ',e);
+if(resu != -1) {
+// console.log('entro');
+s= resu;
+break;
+}
+i++;
+}
+//console.log('valor',s);
+if (s==-1){
+return false;
+}
+else{return true;}
+}
+
+function cual(a){
+return a.filter(ele => busca(ele)===true);
+}
+function im(a){
+for (let i in a){
+console.log(a[i].titulo);
+console.log(a[i].link);
+}
+}
