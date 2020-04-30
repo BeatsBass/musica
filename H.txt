@@ -16,12 +16,13 @@ const browser = await puppeteer.launch();
         deviceScaleFactor: 1,
     });
 
-    let pp = ['take'];
+    let ult = 'Lil Yachty – Lil Boat 2 [iTunes Plus AAC M4A]';
     let sa = [];
-    for(let i in pp) {
+    let i = 1;
+    let salc=false;
+    while(salc===false) {
         const valor = 1;
-        console.log('tcdy')
-        await page.goto('https://www.itopmusic.com');
+        await page.goto('https://www.itopmusic.com/page/'+i);
         let h = await page.evaluate((valor) => {
             let are = [];
             let jio = document.querySelectorAll('.entry-featured-media a');
@@ -32,10 +33,13 @@ const browser = await puppeteer.launch();
                 };
                 are.push(objeto);
             });
-            if (jio === null | jio === undefined) { return valor }
+           if (jio === null | jio === undefined) { return valor }
             return are
 
         }, valor);
+      salc = parar(h,ult);
+    im(h) ;     
+      
         let salida = cual(h);
 
         for (let k in salida) {
@@ -49,14 +53,15 @@ const browser = await puppeteer.launch();
             let v = una.search(/[0-9]{4}/);
             const anio = una.slice(v, v + 4);
             console.log('año ',anio);
-            if (anio === '2009') {
+            //if (anio === '2009') {
                 const p1 = salida[k].link.search('.com/');
                 const p2 = salida[k].link.search('-itunes');
                 let news = 'https://www.musicpremieres.com/';
                 news = news + salida[k].link.slice(p1 + 5, p2);
                 sa.push(news);
-            }
+           // }
         }
+      i++;
     }
 
     console.log(sa);
@@ -64,7 +69,7 @@ const browser = await puppeteer.launch();
     await browser.close();
 
     function busca(e) {
-        const arr = ['Drake'];
+        const arr = ['Drake','lil wayne','David Guetta'];
         let s = -1;
         let i = 0;
         while (i < arr.length) {
@@ -93,4 +98,42 @@ const browser = await puppeteer.launch();
             console.log(a[i].titulo);
             console.log(a[i].link);
         }
+    } 
+function parar(m,p){
+  console.log('mapeo');
+  console.log(p);
+  console.log('');
+  console.log('');
+  const result = m.filter(word => {
+    const qitun = p.replace('[iTunes Plus AAC M4A]', '')
+    const reg = new RegExp(qitun, 'i');
+   // console.log('REG EXP ',reg);
+    const resu = word.titulo.search(reg);
+    if(resu===-1){
+       return false
+       }
+    else{
+      return true
     }
+    //console.log('reshjvjh ',resu);
+    
+    
+    /*console.log(word.titulo);
+    let nume = p.localeCompare(word.titulo);
+    console.log('numero',nume)
+    if(nume===0){
+      return true;
+    }
+     else{
+       return false
+     }*/
+});
+  console.log('largo',result.length )
+  if (result.length ==1){
+    return true
+  }
+  else{
+       return false
+     }
+}
+
