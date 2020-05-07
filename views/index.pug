@@ -11,13 +11,13 @@ html
                 h1.mt-2.mb-5 BeatsBass Search Music V3
         .row
             
-                form.col-md-6.form-inline(action="/" method="POST")
+                form.col-md-6.col-sm-12(action="/" method="POST")
                     .form-group
                         label.mr-2(for='exampleInputEmail1') Buscar Titulo/Artista
                         input.form-control(type='text', aria-describedby='emailHelp',name='nombre', placeholder='Buscar')
 
                     button.btn.btn-primary.ml-2(type='submit') Buscar
-                form.col-md-6.form-inline(action="/year" method="POST")
+                form.col-md-6.col-sm-12(action="/year" method="POST")
                     .form-group
                         label(for='exampleInputEmail1') Buscar Año
                         input.form-control.ml-2(type='text', aria-describedby='emailHelp',name='nombre', placeholder='Buscar')
