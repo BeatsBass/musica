@@ -44,6 +44,10 @@ app.get('/', async (req, res) => {
     //res.send(salida);
     res.render('index',{peoples:iii,se});
 })
+app.get('/data', async (req,res)=>{
+    const data = await Music.find({});
+    res.json(data);
+})
 app.post('/', async (req, res) => {
     const se = req.body.nombre;
     if(se===''){
